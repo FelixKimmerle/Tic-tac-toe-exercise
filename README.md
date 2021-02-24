@@ -7,20 +7,19 @@ Ausserdem werden sie zwei verschiedene Versionen einer Ai programmieren gegen di
 
 * Windows: Gehen sie auf [Codeblocks download windows](https://www.codeblocks.org/downloads/binaries/) und laden sie eine Version herunter die den mingw compiler mitbringt. Fuer die meinsten sollte *codeblocks-XX.XXmingw-setup.exe* die richtige sein.
   
-* Linux: Wenn sie eine Debian nahe distribution wie Debian, Ubuntu oder Popos verwenden koennen sie Codeblocks einfach installieren in dem sie ```sudo apt install codeblocks``` in eine Konsole eingeben. Wenn sie eine andere Distribution verwenden muessen sie sich auf der download Seite selbst informieren [Codeblocks download linux](https://www.codeblocks.org/downloads/binaries/#imagesoslinux48pnglogo-linux-32-and-64-bit).
+* Linux: Wenn sie eine Debian nahe distribution wie Debian, Ubuntu oder Popos verwenden koennen sie Codeblocks einfach installieren in dem sie ```sudo apt install codeblocks``` in eine Konsole eingeben. Wenn sie eine andere Distribution verwenden müssen sie sich auf der download Seite selbst informieren [Codeblocks download linux](https://www.codeblocks.org/downloads/binaries/#imagesoslinux48pnglogo-linux-32-and-64-bit).
 
 Oeffnen sie dann die Projektdatei Tic-tac-toe.cbp mit Codeblocks. Entweder mit Doppelklick auf die Datei oder in Codeblocks mit *File -> Open* und suchen sie dann die Projektdatei.
 
 ## Der vorhandene Code
 
 Ich habe den Code in mehrere Dateien aufgeteilt.
-Dies wurde ihnen in der Vorlesung nicht bei gebracht und muessen sie auch nicht in der Klausur koennen.
-Um die Aufgabe zu loesen muessen sie auch nicht verstehen wie es funktioniert.
+Um die Aufgabe zu loesen müssen sie auch nicht verstehen wie es funktioniert.
 Falls es sie trozdem interresiert koennen sie es hier nachlesen [Splitting code into several files](http://cse230.artifice.cc/lecture/splitting-code.html#:~:text=C%2B%2B%20offers%20a%20very%20simplistic,was%20written%20in%20one%20file.).
 
 ## Die Move Klasse
 
-Schauen sie zuerst in die Datei: Move.h und Move.cpp. Diese Klasse repraesentiert einen *Zug* im Spiel. Ein *Zug* in Tic-tac-toe besteht daraus an eine Position im Feld sein Zeichen zu setzen. Wir speichern die Position mithilfe von zwei *int's*. Einen fuer die Zeile und einen fuer die Spalte. Die *print* Funktion muessen sie nicht verstehen!
+Schauen sie zuerst in die Datei: Move.h und Move.cpp. Diese Klasse repraesentiert einen *Zug* im Spiel. Ein *Zug* in Tic-tac-toe besteht daraus an eine Position im Feld sein Zeichen zu setzen. Wir speichern die Position mithilfe von zwei *int's*. Einen fuer die Zeile und einen fuer die Spalte. Die *print* Funktion müssen sie nicht verstehen!
 
 ## Die State Klasse
 
@@ -95,36 +94,36 @@ Speichert die anzahl an Zuegen die gespielt wurden. Diese Zahl benoetigen wir um
 
 ### Die Funktionen
 
-Die Funktionen: *print*, *print_empty_line* und *print_line* muessen sie nicht verstehen. Diese sind nur dazu da, das Feld "shoen" in der Konsole auszugeben.
+Die Funktionen: *print*, *print_empty_line* und *print_line* müssen sie nicht verstehen. Diese sind nur dazu da, das Feld "shoen" in der Konsole auszugeben.
 
 Die restlichen Funktionen werden sie in den folgenden Aufgaben selber in der Datei: *State.cpp* implementieren.
 
 ## Aufgabe 1
 
-In C++ muessen wir alle Membervariablen im Konstruktor initialisieren da sie nicht automatisch auf 0 (oder ihren Standartwert) gesetzt werden. Implementieren sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
+In C++ müssen wir alle Membervariablen im Konstruktor initialisieren da sie nicht automatisch auf 0 (oder ihren Standartwert) gesetzt werden. Implementieren sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
 
 <details>
-  <summary>Loesungen</summary>
+  <summary>Lösungen</summary>
   
-  Sie muessen die Anzahl der Zuege auf 0 setzen:
+  Sie müssen die Anzahl der Zuege auf 0 setzen:
   
   ```c++
   moves = 0;
   ```
 
-  Sie muessen den Spieler der gerade am Zug ist auf den Kreuz Spieler setzen:
+  Sie müssen den Spieler der gerade am Zug ist auf den Kreuz Spieler setzen:
 
   ```c++
   turn = Player::Cross;
   ```
 
-  Sie muessen den momentanen Gewinner auf None setzen:
+  Sie müssen den momentanen Gewinner auf None setzen:
 
   ```c++
   winner = Player::None;
   ```
   
-  Ausserdem muessen sie jede Zelle im Feld auf None setzen damit das Feld leer ist.
+  Ausserdem müssen sie jede Zelle im Feld auf None setzen damit das Feld leer ist.
 
   ```c++
 for (int row = 0; row < 3; row++)
@@ -141,7 +140,7 @@ for (int row = 0; row < 3; row++)
 Nun koennen sie sich in der main Funtion in der Datei: *main.cpp* ein State Objekt erstellen und die *print* Funktion aufrufen. Dann sollten sie ein leeres Feld sehen.
 
 <details>
-  <summary>Loesung</summary>
+  <summary>Lösung</summary>
   
   ```c++
   State state;
@@ -175,7 +174,7 @@ In dieser Aufgabe sollen sie die Funktionen *execute*, *read_move* und *has_ende
 Zuerst betrachten wir die Funktion *execute*. Diese bekommt einen Parameter move. Wie der Name schon sagt soll diese Funktion den Zug ausfuehren. Das bedeutet, sie soll die Zelle, die durch das Move Objekt gegeben ist, auf den Spieler setzen der gerade am Zug ist. Zudem soll die Funktion den move counter um eins erhoehen und den Spieler der gerade am Zug ist wechseln.
 
 <details>
-  <summary>Loesung: execute</summary>
+  <summary>Lösung: execute</summary>
 
 Zuerst setzen wir die Zelle auf den Spieler der am Zug ist:
 
@@ -249,7 +248,7 @@ int row = input[1] - '1';
 //row hat jetzt den Wert 1
 ```
 
-Da der Nutzer aber auch falsche eingaben taetigen kann muessen wir die Eingaben ueberpruefen.
+Da der Nutzer aber auch falsche eingaben taetigen kann müssen wir die Eingaben ueberpruefen.
 Ueberpruefen sie:
 
 * Die Eingabe hat die Laenge 2
@@ -261,7 +260,7 @@ Wenn alle diese Aussagen wahr sind, wandeln sie die eingelesene Position in ein 
 Ausserdem sollte bei einer ungueltigen Eingabe das Programm so lange nach einer neuen Eingabe fragen bis eine gueltige Eingabe getaetigt wurde.
 
 <details>
-  <summary>Loesung: read_move</summary>
+  <summary>Lösung: read_move</summary>
 
 ```c++
 //As long as we dont have a valid input we try ask the user for an input.
@@ -293,7 +292,7 @@ while (true)
 Nun fehlt nur noch die Funktion *has_ended*. Da wir bis jetzt noch keine Moeglichkeit haben einen Sieger festzustellen geben wir hier erstmal dann true zurueck wenn neun Zuege gespielt wurden. Also jede Zelle gefuellt ist. 
 
 <details>
-  <summary>Loesung: has_ended</summary>
+  <summary>Lösung: has_ended</summary>
 
 ```c++
 return (moves == 9);
@@ -304,7 +303,7 @@ return (moves == 9);
 Um den geschriebenen Code zu testen schreiben wir in der main Funktion eine while Schleife, die so lange laufen soll, wie das Spiel nicht vorbei ist. Im Schleifenkoerper rufen wir die Funktion read_move auf und geben anschliessend mithilfe der print Funktion das Feld auf der Konsole aus.
 
 <details>
-  <summary>Loesung</summary>
+  <summary>Lösung</summary>
 
 ```c++
 while (!state.has_ended())
@@ -386,10 +385,10 @@ Und so weiter bis eben das Feld voll ist.
 
 ## Aufgabe 3
 
-Nun müssen wir noch feststellen ob ein Spieler gewonnen hat. Dazu muessen wir aber nicht nach jedem Zug das ganze Feld analysieren sonder es reicht die Zeile, Spalte und eventuell Diagonale ueberpruefen in denen das letzte Zeichen gesetzt wurde.
+Nun müssen wir noch feststellen ob ein Spieler gewonnen hat. Dazu müssen wir aber nicht nach jedem Zug das ganze Feld analysieren sonder es reicht die Zeile, Spalte und eventuell Diagonale ueberpruefen in denen das letzte Zeichen gesetzt wurde.
 
-Hinweis: Um zu testen ob eine Zelle sich in der Diagonalen befindet muessen wir nur prüfen ob die Spalte gleich der Zeile ist.
-Um zu testen ob die Zelle sich in der Gegendiagonalen befindet muessen wir nur testen ob: Zeile + Spalte = 2 ist. [Diagonale Wikipedia](https://en.wikipedia.org/wiki/Main_diagonal) <- Achtung hier wird bei 1 angefangen zu Zaehlen. Wir fangen mit 0 an zu Zaehlen.
+Hinweis: Um zu testen ob eine Zelle sich in der Diagonalen befindet müssen wir nur prüfen ob die Spalte gleich der Zeile ist.
+Um zu testen ob die Zelle sich in der Gegendiagonalen befindet müssen wir nur testen ob: Zeile + Spalte = 2 ist. [Diagonale Wikipedia](https://en.wikipedia.org/wiki/Main_diagonal) <- Achtung hier wird bei 1 angefangen zu Zaehlen. Wir fangen mit 0 an zu Zaehlen.
 
 Ergaenzen sie die Methode update_winner.
 
@@ -401,7 +400,7 @@ Ergaenzen sie die Methode update_winner.
 Wenn sie drei gleiche gefunden haben, setzen sie die Variable ```winner``` auf den siegreichen Spieler. Wenn sie keinen Sieger gefunden haben soll die Variable ```winner``` unveraendert bleiben.
 
 <details>
-  <summary>Loesung Pruefe Spalte</summary>
+  <summary>Lösung Pruefe Spalte</summary>
 
 Dies koennen wir z.b. so umsetzen:
 
@@ -420,7 +419,7 @@ Es wird zuerst getestet ob die erste Zelle leer ist. Denn ist dies der Fall koen
 </details>
 
 <details>
-  <summary>Loesung Pruefe Zeile</summary>
+  <summary>Lösung Pruefe Zeile</summary>
 
 
 ```c++
@@ -438,7 +437,7 @@ Funktioniert analog zum Testen der Spalte.
 </details>
 
 <details>
-  <summary>Loesung Pruefe Diagonale</summary>
+  <summary>Lösung Pruefe Diagonale</summary>
 
 
 ```c++
@@ -460,7 +459,7 @@ Funktioniert gleich wie die Zeile, Spalten tests. Aber wir pruefen zuerst noch o
 </details>
 
 <details>
-  <summary>Loesung Pruefe Gegen-Diagonale</summary>
+  <summary>Lösung Pruefe Gegen-Diagonale</summary>
 
 
 ```c++
@@ -486,7 +485,7 @@ Analog zur Diagonale.
 Rufen sie in der Methode ```execute_move``` die Methode ```update_winner``` auf.
 
 <details>
-  <summary>Loesung Aufrufen</summary>
+  <summary>Lösung Aufrufen</summary>
 
 ```c++
 update_winner(move);
@@ -499,10 +498,10 @@ Dies muss nach der tatsaechlichen veraenderung des Feldes geschehen.
 
 <br>
 
-Nun muessen wir noch das Spiel beenden wenn ein Spieler gewonnen hat. Dazu muessen wir die Methode has_ended bearbeiten.
+Nun müssen wir noch das Spiel beenden wenn ein Spieler gewonnen hat. Dazu müssen wir die Methode has_ended bearbeiten.
 
 <details>
-  <summary>Loesung has_ended</summary>
+  <summary>Lösung has_ended</summary>
 
 
 ```c++
@@ -517,7 +516,7 @@ return (winner != Player::None) || (moves == 9);
 Wir wollen nun noch den gewinner auf der Konsole ausgeben. Schreiben sie den Code in der main Funktion nach der while Schleife. Verwenden sie die Methode ```get_winner```.
 
 <details>
-  <summary>Loesung Konsolenausgabe</summary>
+  <summary>Lösung Konsolenausgabe</summary>
 
 Man kann hier ein switch-case verwenden. Sie koennen aber auch if-else verwenden.
 
@@ -546,3 +545,4 @@ Nun sollten sie gegen sich selber spielen koennen. Um die ```update_winner``` Me
 
 ## Aufgabe 4
 
+## Diese Aufgabe ist noch nicht ganz fertig. Wird aber bis 01.03.2021 Verfuegbar sein.
