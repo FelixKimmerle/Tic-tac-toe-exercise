@@ -1,25 +1,25 @@
 # Tic-tac-toe
 
-In dieser Aufgabe werden sie das Spiel Tic-tac-toe programmieren.
-Ausserdem werden sie zwei verschiedene Versionen einer Ai programmieren gegen die sie dann spielen koennen.
+In dieser Aufgabe werden Sie das Spiel Tic-tac-toe programmieren.
+Außerdem werden Sie zwei verschiedene Versionen einer AI programmieren, gegen die Sie dann spielen können.
 
 ## Vorbereitung
 
-* Windows: Gehen sie auf [Codeblocks download windows](https://www.codeblocks.org/downloads/binaries/) und laden sie eine Version herunter die den mingw compiler mitbringt. Fuer die meinsten sollte *codeblocks-XX.XXmingw-setup.exe* die richtige sein.
-  
-* Linux: Wenn sie eine Debian nahe distribution wie Debian, Ubuntu oder Popos verwenden koennen sie Codeblocks einfach installieren in dem sie ```sudo apt install codeblocks``` in eine Konsole eingeben. Wenn sie eine andere Distribution verwenden müssen sie sich auf der download Seite selbst informieren [Codeblocks download linux](https://www.codeblocks.org/downloads/binaries/#imagesoslinux48pnglogo-linux-32-and-64-bit).
+* Windows: Gehen Sie auf [Codeblocks download Windows](https://www.codeblocks.org/downloads/binaries/) und laden Sie eine Version herunter die den mingw Compiler mitbringt. Für die meisten sollte *codeblocks-XX.XXmingw-setup.exe* die richtige sein.
 
-Oeffnen sie dann die Projektdatei Tic-tac-toe.cbp mit Codeblocks. Entweder mit Doppelklick auf die Datei oder in Codeblocks mit *File -> Open* und suchen sie dann die Projektdatei.
+* Linux: Wenn Sie eine Debian nahe Distribution wie Debian, Ubuntu oder Popos verwenden können Sie Codeblocks einfach installieren in dem Sie ```sudo apt install codeblocks``` in eine Konsole eingeben. Wenn Sie eine andere Distribution verwenden müssen Sie sich auf der download Seite selbst informieren [Codeblocks download Linux](https://www.codeblocks.org/downloads/binaries/#imagesoslinux48pnglogo-linux-32-and-64-bit).
+
+Öffnen Sie dann die Projektdatei Tic-tac-toe.cbp mit Codeblocks. Entweder mit Doppelklick auf die Datei oder in Codeblocks mit *File -> Open* und suchen Sie dann die Projektdatei.
 
 ## Der vorhandene Code
 
 Ich habe den Code in mehrere Dateien aufgeteilt.
-Um die Aufgabe zu loesen müssen sie auch nicht verstehen wie es funktioniert.
-Falls es sie trozdem interresiert koennen sie es hier nachlesen [Splitting code into several files](http://cse230.artifice.cc/lecture/splitting-code.html#:~:text=C%2B%2B%20offers%20a%20very%20simplistic,was%20written%20in%20one%20file.).
+Um die Aufgabe zu lösen müssen Sie auch nicht verstehen wie es funktioniert.
+Falls es Sie trotzdem interesSiert können Sie es hier nachlesen [Splitting code into several files](http://cse230.artifice.cc/lecture/splitting-code.html#:~:text=C%2B%2B%20offers%20a%20very%20simplistic,was%20written%20in%20one%20file.).
 
 ## Die Move Klasse
 
-Schauen sie zuerst in die Datei: Move.h und Move.cpp. Diese Klasse repraesentiert einen *Zug* im Spiel. Ein *Zug* in Tic-tac-toe besteht daraus an eine Position im Feld sein Zeichen zu setzen. Wir speichern die Position mithilfe von zwei *int's*. Einen fuer die Zeile und einen fuer die Spalte. Die *print* Funktion müssen sie nicht verstehen!
+Schauen Sie zuerst in die Datei: Move.h und Move.cpp. Diese Klasse repräsentiert einen *Zug* im Spiel. Ein *Zug* in Tic-tac-toe besteht daraus an eine Position im Feld sein Zeichen zu setzen. Wir speichern die Position mithilfe von zwei *int's*. Einen für die Zeile und einen für die Spalte. Die *print* Funktion müssen Sie nicht verstehen!
 
 ## Die State Klasse
 
@@ -27,34 +27,34 @@ Schauen wir nun in die Datei: State.h
 
 ### Enum Player
 
-Wir verwenden den Typ Player um zu speichern ob eine Zelle frei, mit einem Kreuz oder einem Kreis belegt ist. In diesem Fall steht `Player::None` fuer eine leere Zelle, `Player::Cross` fuer eine, mit einem Kreuz belegten Zelle und `Player::Nought` fier eine, mite einem Kreis belegte Zelle.
+Wir verwenden den Typ Player um zu speichern, ob eine Zelle frei, mit einem Kreuz oder einem Kreis belegt ist. In diesem Fall steht 'Player::None' für eine leere Zelle, 'Player::Cross' für eine, mit einem Kreuz belegten Zelle und 'Player::Nought' für eine, mit einem Kreis belegte Zelle.
 
 ### 2D Array field
 
-In der Vorlesung wurden eindimensionale Arrays vorgestellt. Wir verwenden hier nun einen zweidimensionalen Array um das Feld zu speichern. Man verwendet diese fast gennau so wie die normalen Arrays.
+In der Vorlesung wurden eindimensionale Arrays vorgestellt. Wir verwenden hier nun einen zweidimensionalen Array, um das Feld zu speichern. Man verwendet diese fast genau so wie die normalen Arrays.
 
-Hier wird das feld erstellt mit der groesse 3x3. Also insgesammt gibt es neun Zellen:
+Hier wird das Feld erstellt mit der größe 3×3. Also insgesamt gibt es neun Zellen:
 
 ```c++
 Player field[3][3];
 ```
 
-Zugreifen kann man indem man die Koordinaten in die eckigen Klammern schreibt:
+Zugreifen kann man, indem man die Koordinaten in die eckigen Klammern schreibt:
 
 ```c++
 Player player = field[1][1];
 ```
 
-in diesem Beispiel bekommt man die mittlere Zelle des Tic-tac-toe Feldes.
+In diesem Beispiel bekommt man die mittlere Zelle des Tic-tac-toe Feldes.
 
-Wir verwenden die erste Komponente fuer die Spalten und die zweite fuer die Zeilen. (So wie in der Mathematik bei Matrizen).
+Wir verwenden die erste Komponente für die Spalten und die zweite für die Zeilen. (So wie in der Mathematik bei Matrizen).
 Bsp:
 
 ```c++
 Player player = field[0][0];
 ```
 
-hier bekommen wir das Feld links oben.
+Hier bekommen wir das Feld links oben.
 
 Zuweisungen funktionieren auch intuitiv:
 
@@ -62,9 +62,9 @@ Zuweisungen funktionieren auch intuitiv:
 field[2][2] = Player::Cross;
 ```
 
-hier besetzen wir die untere rechte Zelle mit einem Kreuz.
+Hier besetzen wir die untere rechte Zelle mit einem Kreuz.
 
-Der folgen Tabelle koennen sie alle Koordinaten entnehmen:
+Der folgen Tabelle können Sie alle Koordinaten entnehmen:
 
 |     | 0      | 1      | 2      |
 | --- | ------ | ------ | ------ |
@@ -78,52 +78,52 @@ Der folgen Tabelle koennen sie alle Koordinaten entnehmen:
 Player turn;
 ```
 
-Speichert den Spieler der gerade am Zug ist.
+Speichert den Spieler, der gerade am Zug ist.
 
 ```c++
 Player winner;
 ```
 
-Speichert den Gewinner im aktuellen Zustand. Solange keiner gewonnen hat oder es unentschieden steht sollte `winner == Player::None` gelten.
+Speichert den Gewinner im aktuellen Zustand. Solange keiner gewonnen hat oder es unentschieden steht, sollte 'winner == Player::None' gelten.
 
 ```c++
 int moves;
 ```
 
-Speichert die anzahl an Zuegen die gespielt wurden. Diese Zahl benoetigen wir um ein unentschieden zu erkennen. Wenn neun Zuege gespielt wurden und kein Gewinner feststeht haben wir ein unentschieden.
+Speichert die Anzahl an Zügen, die gespielt wurden. Diese Zahl benötigen wir, um ein unentschieden zu erkennen. Wenn neun Züge gespielt wurden und kein Gewinner feststeht, haben wir ein unentschieden.
 
 ### Die Funktionen
 
-Die Funktionen: *print*, *print_empty_line* und *print_line* müssen sie nicht verstehen. Diese sind nur dazu da, das Feld "shoen" in der Konsole auszugeben.
+Die Funktionen: *print*, *print_empty_line* und *print_line* müssen Sie nicht verstehen. Diese sind nur dazu da, das Feld "schön" in der Konsole auszugeben.
 
-Die restlichen Funktionen werden sie in den folgenden Aufgaben selber in der Datei: *State.cpp* implementieren.
+Die restlichen Funktionen werden Sie in den folgenden Aufgaben selber in der Datei: *State.cpp* implementieren.
 
 ## Aufgabe 1
 
-In C++ müssen wir alle Membervariablen im Konstruktor initialisieren da sie nicht automatisch auf 0 (oder ihren Standartwert) gesetzt werden. Implementieren sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
+In C++ müssen wir alle Membervariablen im Konstruktor initialiSieren da Sie nicht automatisch auf 0 (oder ihren Standardwert) gesetzt werden. Implementieren Sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
 
 <details>
   <summary>Lösungen</summary>
   
-  Sie müssen die Anzahl der Zuege auf 0 setzen:
-  
-  ```c++
-  moves = 0;
-  ```
+Sie müssen die Anzahl der Züge auf 0 setzen:
 
-  Sie müssen den Spieler der gerade am Zug ist auf den Kreuz Spieler setzen:
+```c++
+moves = 0;
+```
 
-  ```c++
-  turn = Player::Cross;
-  ```
+Sie müssen den Spieler der gerade am Zug ist auf den Kreuz-Spieler setzen:
 
-  Sie müssen den momentanen Gewinner auf None setzen:
+```c++
+turn = Player::Cross;
+```
 
-  ```c++
-  winner = Player::None;
-  ```
-  
-  Ausserdem müssen sie jede Zelle im Feld auf None setzen damit das Feld leer ist.
+Sie müssen den momentanen Gewinner auf None setzen:
+
+```c++
+winner = Player::None;
+```
+
+Außerdem müssen Sie jede Zelle im Feld auf None setzen damit das Feld leer ist.
 
   ```c++
 for (int row = 0; row < 3; row++)
@@ -137,7 +137,7 @@ for (int row = 0; row < 3; row++)
 
 </details>
 
-Nun koennen sie sich in der main Funtion in der Datei: *main.cpp* ein State Objekt erstellen und die *print* Funktion aufrufen. Dann sollten sie ein leeres Feld sehen.
+Nun können Sie sich in der main Funktion in der Datei: *main.cpp* ein State Objekt erstellen und die *print* Funktion aufrufen. Dann sollten Sie ein leeres Feld sehen.
 
 <details>
   <summary>Lösung</summary>
@@ -149,7 +149,7 @@ Nun koennen sie sich in der main Funtion in der Datei: *main.cpp* ein State Obje
   
 </details>
 
-Sie koennen nun das Programm uebersetzen und ausfuehren.
+Sie können nun das Programm übersetzen und ausführen.
 Es sollte in der Konsole folgende Ausgabe vorhanden sein:
 
 <details>
@@ -170,8 +170,8 @@ Es sollte in der Konsole folgende Ausgabe vorhanden sein:
 
 ## Aufgabe 2
 
-In dieser Aufgabe sollen sie die Funktionen *execute*, *read_move* und *has_ended* implementieren.
-Zuerst betrachten wir die Funktion *execute*. Diese bekommt einen Parameter move. Wie der Name schon sagt soll diese Funktion den Zug ausfuehren. Das bedeutet, sie soll die Zelle, die durch das Move Objekt gegeben ist, auf den Spieler setzen der gerade am Zug ist. Zudem soll die Funktion den move counter um eins erhoehen und den Spieler der gerade am Zug ist wechseln.
+In dieser Aufgabe sollen Sie die Funktionen *execute*, *read_move* und *has_ended* implementieren.
+Zuerst betrachten wir die Funktion *execute*. Diese bekommt einen Parameter move. Wie der Name schon sagt, soll diese Funktion den Zug ausführen. Das bedeutet, Sie soll die Zelle, die durch das Moveobjekt gegeben ist, auf den Spieler setzen der gerade am Zug ist. Zudem soll die Funktion den move counter um eins erhöhen und den Spieler der gerade am Zug ist wechseln.
 
 <details>
   <summary>Lösung: execute</summary>
@@ -183,7 +183,7 @@ field[move.get_column()][move.get_row()] = turn;
 ```
 
 Dann wechseln wir den Spieler der am Zug ist.
-Wir koennen hier davon ausgehen, dass die variable turn immer entweder `Player::Cross` oder `Player::Nought` ist und nie `Player::None`.
+Wir können hier davon ausgehen, dass die variable turn immer entweder 'Player::Cross' oder 'Player::Nought' ist und nie 'Player::None'.
 
 ```c++
 if (turn == Player::Cross)
@@ -196,7 +196,7 @@ else if (turn == Player::Nought)
 }
 ```
 
-Und noch den move counter um eins erhoehen:
+Und noch den move counter um eins erhöhen:
 
 ```c++
 moves++;
@@ -222,7 +222,7 @@ oder:
 
 </details>
 
-Die Funktion *read_move* soll vom Benutzer so lange einen Zug abfragen bis dieser eine gueltige eingabe getaetigt hat. Die Eingabe soll aus zwei Zeichen bestehen. Als erstes ein Buchstabe der die Spalte angibt. 'a' fuer die erste Spalte. 'b' fuer die zweite. 'c' fuer die dritte Spalte. Und das zweite Zeichen soll die Zeile bestimmen. '1' fuer die erste Zeile. '2' fuer die zweite Zeile. '3' fuer die dritte Zeile. (Es funktioniert gennau gleich wie bei Schach). Alle koordinaten koennen sie folgender Tabelle entnehmen:
+Die Funktion *read_move* soll vom Benutzer so lange einen Zug abfragen bis dieser eine gültige Eingabe getätigt hat. Die Eingabe soll aus zwei Zeichen bestehen. Als Erstes ein Buchstabe der die Spalte angibt. 'a' für die erste Spalte. 'b' für die Zweite. 'c' für die dritte Spalte. Und das zweite Zeichen soll die Zeile bestimmen. '1' für die erste Zeile. '2' für die zweite Zeile. '3' für die dritte Zeile. (Es funktioniert genau gleich wie bei Schach). Alle Koordinaten können Sie folgender Tabelle entnehmen:
 
 |   | a  | b  | c  |
 |---|----|----|----|
@@ -230,34 +230,34 @@ Die Funktion *read_move* soll vom Benutzer so lange einen Zug abfragen bis diese
 | 2 | a2 | b2 | c2 |
 | 3 | a3 | b3 | c3 |
 
-Dies soll es dem Nutzer ein wenig einfacher machen seine Zuege einzugeben. Ausserdem verschleiert es die Tatsache das wir intern bei 0 anfangen zu zaehlen. 
+Dies soll es dem Nutzer ein wenig einfacher machen seine Züge einzugeben. Außerdem verschleiert es die Tatsache das wir intern bei 0 anfangen zu zählen.
 
-Hinweis: Sie koennen einen Buchstaben (char) ganz einfach zur Spaltennummer umrechnen in dem sie folgendes berechnen:
+Hinweis: Sie können einen Buchstaben (char) ganz einfach zur Spaltennummer umrechnen in dem Sie folgendes berechnen:
 
 ```c++
-std::string input = "a2"; //Diesen Text sollten sie von der Konsole einlesen.
+std::string input = "a2"; //Diesen Text sollten Sie von der Konsole einlesen.
 int column = input[0] - 'a'; 
 //column hat jetzt den Wert 0
 ```
 
-Ganz gennau so koennen sie auch eine Buchstaben zur Zeilennummer umrechnen:
+Ganz genau so können Sie auch einen Buchstaben zur Zeilennummer umrechnen:
 
 ```c++
-std::string input = "a2"; //Diesen Text sollten sie von der Konsole einlesen.
+std::string input = "a2"; //Diesen Text sollten Sie von der Konsole einlesen.
 int row = input[1] - '1'; 
 //row hat jetzt den Wert 1
 ```
 
-Da der Nutzer aber auch falsche eingaben taetigen kann müssen wir die Eingaben ueberpruefen.
-Ueberpruefen sie:
+Da der Nutzer aber auch falsche Eingaben, tätigen kann, müssen wir die Eingaben überprüfen.
+Überprüfen Sie:
 
-* Die Eingabe hat die Laenge 2
+* Die Eingabe hat die Länge 2
 * Die eingelesene und umgerechnete Spaltenzahl ist 0,1 oder 2
 * Die eingelesene und umgerechnete Zeilenzahl ist 0,1 oder 2
 * Die Zelle an der eingelesenen Position ist leer
 
-Wenn alle diese Aussagen wahr sind, wandeln sie die eingelesene Position in ein Move Objekt um und rufen sie die Funktion *execute* auf.
-Ausserdem sollte bei einer ungueltigen Eingabe das Programm so lange nach einer neuen Eingabe fragen bis eine gueltige Eingabe getaetigt wurde.
+Wenn alle diese Aussagen wahr sind, wandeln Sie die eingelesene Position in ein Move-objekt um und rufen Sie die Funktion *execute* auf.
+Außerdem sollte bei einer ungültigen Eingabe das Programm so lange nach einer neuen Eingabe fragen bis eine gültige Eingabe getätigt wurde.
 
 <details>
   <summary>Lösung: read_move</summary>
@@ -289,7 +289,7 @@ while (true)
 
 </details>
 
-Nun fehlt nur noch die Funktion *has_ended*. Da wir bis jetzt noch keine Moeglichkeit haben einen Sieger festzustellen geben wir hier erstmal dann true zurueck wenn neun Zuege gespielt wurden. Also jede Zelle gefuellt ist. 
+Nun fehlt nur noch die Funktion *has_ended*. Da wir bis jetzt noch keine Moeglichkeit haben einen Sieger festzustellen geben wir hier erstmal dann true zurueck, wenn neun Züge gespielt wurden. Also jede Zelle gefüllt ist.
 
 <details>
   <summary>Lösung: has_ended</summary>
@@ -300,7 +300,7 @@ return (moves == 9);
 
 </details>
 
-Um den geschriebenen Code zu testen schreiben wir in der main Funktion eine while Schleife, die so lange laufen soll, wie das Spiel nicht vorbei ist. Im Schleifenkoerper rufen wir die Funktion read_move auf und geben anschliessend mithilfe der print Funktion das Feld auf der Konsole aus.
+Um den geschriebenen Code zu testen, schreiben wir in der main Funktion eine while Schleife, die so lange laufen soll, wie das Spiel nicht vorbei ist. Im Schleifenkörper rufen wir die Funktion read_move auf und geben anschließend mithilfe der print Funktion das Feld auf der Konsole aus.
 
 <details>
   <summary>Lösung</summary>
@@ -317,7 +317,7 @@ while (!state.has_ended())
 
 </details>
 
-Wenn sie jetzt das Programm starten sollten sie, abwechselnd mit Kreuz und mit Kreis ihre Zuege spielen koennen. Eine moegliche Ausgabe koennte sein:
+Wenn Sie jetzt das Programm starten sollten Sie, abwechselnd mit Kreuz und mit Kreis ihre Züge spielen können. Eine mögliche Ausgabe könnte sein:
 
 <details>
   <summary>Ausgabe</summary>
@@ -385,24 +385,24 @@ Und so weiter bis eben das Feld voll ist.
 
 ## Aufgabe 3
 
-Nun müssen wir noch feststellen ob ein Spieler gewonnen hat. Dazu müssen wir aber nicht nach jedem Zug das ganze Feld analysieren sonder es reicht die Zeile, Spalte und eventuell Diagonale ueberpruefen in denen das letzte Zeichen gesetzt wurde.
+Nun müssen wir noch feststellen, ob ein Spieler gewonnen hat. Dazu müssen wir aber nicht nach jedem Zug das ganze Feld analySieren, sondern es reicht die Zeile, Spalte und eventuell Diagonale überprüfen, in denen das letzte Zeichen gesetzt wurde.
 
-Hinweis: Um zu testen ob eine Zelle sich in der Diagonalen befindet müssen wir nur prüfen ob die Spalte gleich der Zeile ist.
-Um zu testen ob die Zelle sich in der Gegendiagonalen befindet müssen wir nur testen ob: Zeile + Spalte = 2 ist. [Diagonale Wikipedia](https://en.wikipedia.org/wiki/Main_diagonal) <- Achtung hier wird bei 1 angefangen zu Zaehlen. Wir fangen mit 0 an zu Zaehlen.
+Hinweis: Um zu testen, ob eine Zelle sich in der Diagonalen befindet, müssen wir nur prüfen, ob die Spalte gleich der Zeile ist.
+Um zu testen, ob die Zelle sich in der Gegendiagonalen befindet, müssen wir nur testen ob: Zeile + Spalte = 2 ist. [Diagonale Wikipedia](https://en.wikipedia.org/wiki/Main_diagonal) <- Achtung hier wird bei 1 angefangen zu zählen. Wir fangen mit 0 an zu Zählen.
 
-Ergaenzen sie die Methode update_winner.
+Ergänzen Sie die Methode update_winner.
 
-* Testen sie die Spalte auf drei gleiche Zeichen
-* Testen sie die Zeile auf drei gleiche Zeichen
-* Testen sie ob das neue Zeichen auf der Diagonalen liegt und testen sie gegebenenfalls die Diagonale auf drei gleiche Zeichen.
-* Testen sie ob das neue Zeichen auf der Gegen-Diagonalen liegt und testen sie gegebenenfalls die Gegen-Diagonale auf drei gleiche Zeichen.
+* Testen Sie die Spalte auf drei gleiche Zeichen
+* Testen Sie die Zeile auf drei gleiche Zeichen
+* Testen Sie, ob das neue Zeichen auf der Diagonalen liegt und testen Sie gegebenenfalls die Diagonale auf drei gleiche Zeichen.
+* Testen Sie, ob das neue Zeichen auf der Gegen-Diagonalen liegt und testen Sie gegebenenfalls die Gegen-Diagonale auf drei gleiche Zeichen.
 
-Wenn sie drei gleiche gefunden haben, setzen sie die Variable ```winner``` auf den siegreichen Spieler. Wenn sie keinen Sieger gefunden haben soll die Variable ```winner``` unveraendert bleiben.
+Wenn Sie drei gleiche gefunden haben, setzen Sie die Variable ```winner``` auf den Siegreichen Spieler. Wenn Sie keinen Sieger gefunden haben soll die Variable ```winner``` unveraendert bleiben.
 
 <details>
   <summary>Lösung Pruefe Spalte</summary>
 
-Dies koennen wir z.b. so umsetzen:
+Dies können wir z.b. so umsetzen:
 
 ```c++
 //Check the column
@@ -414,7 +414,7 @@ if (field[changed_column][0] != Player::None &&
 }
 ```
 
-Es wird zuerst getestet ob die erste Zelle leer ist. Denn ist dies der Fall koennen in der Spalte ja keine 3 glaichen Zeichen sein. Dann wird getestet ob das erste Element gleich dem Zweiten ist. Und so weiter.
+Es wird zuerst getestet, ob die erste Zelle leer ist. Denn ist dies der Fall können in der Spalte ja keine 3 gleichen Zeichen sein. Dann wird getestet, ob das erste Element gleich dem Zweiten ist. Und so weiter.
 
 </details>
 
@@ -454,7 +454,7 @@ if (changed_column == changed_row)
 }
 ```
 
-Funktioniert gleich wie die Zeile, Spalten tests. Aber wir pruefen zuerst noch ob die geaenderte Zelle ueberhaupt auf der Diagonalen liegt.
+Funktioniert gleich wie die Zeile, Spalten Tests. Aber wir prüfen zuerst noch ob die geänderte Zelle überhaupt auf der Diagonalen liegt.
 
 </details>
 
@@ -482,7 +482,7 @@ Analog zur Diagonale.
 
 <br>
 
-Rufen sie in der Methode ```execute_move``` die Methode ```update_winner``` auf.
+Rufen Sie in der Methode ```execute_move``` die Methode ```update_winner``` auf.
 
 <details>
   <summary>Lösung Aufrufen</summary>
@@ -491,14 +491,14 @@ Rufen sie in der Methode ```execute_move``` die Methode ```update_winner``` auf.
 update_winner(move);
 ```
 
-Dies muss nach der tatsaechlichen veraenderung des Feldes geschehen.
+Dies muss nach der tatsächlichen Veränderung des Feldes geschehen.
 
 
 </details>
 
 <br>
 
-Nun müssen wir noch das Spiel beenden wenn ein Spieler gewonnen hat. Dazu müssen wir die Methode has_ended bearbeiten.
+Nun müssen wir noch das Spiel beenden, wenn ein Spieler gewonnen hat. Dazu müssen wir die Methode has_ended bearbeiten.
 
 <details>
   <summary>Lösung has_ended</summary>
@@ -513,12 +513,12 @@ return (winner != Player::None) || (moves == 9);
 
 <br>
 
-Wir wollen nun noch den gewinner auf der Konsole ausgeben. Schreiben sie den Code in der main Funktion nach der while Schleife. Verwenden sie die Methode ```get_winner```.
+Wir wollen nun noch den Gewinner auf der Konsole ausgeben. Schreiben Sie den Code in der main Funktion nach der while Schleife. Verwenden Sie die Methode ```get_winner```.
 
 <details>
   <summary>Lösung Konsolenausgabe</summary>
 
-Man kann hier ein switch-case verwenden. Sie koennen aber auch if-else verwenden.
+Man kann hier ein switch-case verwenden. Sie können aber auch if-else verwenden.
 
 ```c++
 Player winner = state.get_winner();
@@ -541,29 +541,29 @@ case Player::Nought:
 
 <br>
 
-Nun sollten sie gegen sich selber spielen koennen. Um die ```update_winner``` Methode zu testen sollten Sie ein paar Spiele spielen.
+Nun sollten Sie gegen sich selber spielen können. Um die ```update_winner``` Methode zu testen, sollten Sie ein paar Spiele spielen.
 
 ## Aufgabe 4
 
 ### Aufgabe 4.1 Zufall
 
-Im ersten schritt wollen wir eine ganz banale AI die einfach zufaellige Zuege spielt. Dazu muessen wir zuerst einen Seed setzen da sonnst der Computer bei gleicher Eingabe auch immer das gleiche spielt. So waere er viel zu einfach zu besiegen da man sich nur ein Spiel merken muss das man schon einmal gewonnen hat.
+Im ersten Schritt wollen wir eine ganz banale AI die einfach zufällige Züge spielt. Dazu müssen wir zuerst einen Seed setzen da sonst der Computer bei gleicher Eingabe auch immer das Gleiche spielt. So wäre er viel zu einfach zu beSiegen da man sich nur ein Spiel merken muss, das man schon einmal gewonnen hat.
 
-Um den Seed zu setzen verwenden wir:
+Um den Seed zu setzen, verwenden wir:
 
 ```c++
 srand(time(0));
 ```
 
-```time(0)``` gibt die Anzahl an Sekunden seit 01.01.1970 00:00 zurueck. Das ist fuer unsere Zwecke zufaellig genug.
-Dies rufen wir ganz am Anfang unseres Programmes in der main Funktion auf. 
+```time(0)``` gibt die Anzahl an Sekunden seit 01.01.1970 00:00 zurück. Das ist für unsere Zwecke zufällig genug.
+Dies rufen wir ganz am Anfang unseres Programmes in der main Funktion auf.
 
-Nun gehen wir in der Mehtode ```generate_move```. Dort wollen wir Zuerst alle moeglichen legalen Zuege finden und dann zufaellig einen auswaehlen.
+Nun gehen wir in der Methode ```generate_move```. Dort wollen wir zuerst alle möglichen legalen Züge finden und dann zufällig einen auswählen.
 
-Um alle legalen Zuege zu finden iterieren wir ueber alle Zellen im Feld und testen ob die Zelle gleich Player::Empty ist.
+Um alle legalen Züge zu finden iterieren wir über alle Zellen im Feld und testen, ob die Zelle gleich Player::Empty ist.
 
-Speichern sie alle legalen Zuege in einem ```std::vector<Move>```.
-Fuehren sie dannach einen zufaelligen Zug aus dem vector aus.
+Speichern Sie alle legalen Zuege in einem Vektor.
+Fuehren Sie dannach einen zufaelligen Zug aus dem Vektor aus.
 
 <details>
   <summary>Lösung zufaellige Zug generierung</summary>
@@ -588,7 +588,7 @@ execute(possible_moves[rand() % possible_moves.size()]);
 </details>
 <br>
 
-Nun muessen wir noch die main Funktion abaendern sodass in jedem zweiten Zug der Computer einen zufaelligen Zug spielt. Nach dem aufrufen der Methode ```read_move``` muessen sie nochmal testen ob das Spiel nicht eventuell im letzten Zug beendet wurde. Dann koennen sie ```generate_move``` aufrufen.
+Nun muessen wir noch die main Funktion abaendern, sodass in jedem zweiten Zug der Computer einen zufälligen Zug spielt. Nach dem Aufrufen der Methode ```read_move``` müssen Sie nochmal testen, ob das Spiel nicht eventuell im letzten Zug beendet wurde. Dann können Sie ```generate_move``` aufrufen.
 
 
 <details>
@@ -615,18 +615,18 @@ while (!state.has_ended())
 </details>
 <br>
 
-Nun koennen sie ein paar Spiele spielen, sollten aber keine Probleme damit haben zu gewinnen.
+Nun können Sie ein paar Spiele spielen, sollten aber keine Probleme damit haben zu gewinnen.
 
 ### Aufagabe 4.2 Ein Zug in die Zukunft
 
-Nun wollen wir den Computer ein wenig Schlauer machen. Wenn der Computer zwei gleiche in einer Zeile/Spalte/Diagonalen hat, die dritte Zelle frei ist und er am Zug ist, wollen wir dass der Computer den gewinnenden Zug spielt. Ausserdem wollen wir, dass wenn der menschliche Gegner im naechsten Zug gewinnen kann, der Computer die so gut es geht vereitelt.
+Nun wollen wir den Computer ein wenig schlauer machen. Wenn der Computer zwei gleiche in einer Zeile/Spalte/Diagonalen hat, die dritte Zelle frei ist und er am Zug ist, wollen wir, dass der Computer den gewinnenden Zug spielt. Außerdem wollen wir, dass wenn der menschliche Gegner im nächsten Zug gewinnen kann, der Computer die so gut es geht vereitelt.
 
-Dazu benoetigen wir eine neue Methode ```has_winning_move```. Diese soll true zurueck geben wenn der Spieler der am Zug ist im naechsten Zug gewinnen kann. Diese Methode wurde noch nicht von mir angelegt da wir sie nur fuer diese Aufgabe benoetigen. Legen sie also eine Defenition in der *State.hpp* Datei an und eine Deklaration in der *State.cpp* Datei an.
+Dazu benötigen wir eine neue Methode ```has_winning_move```. Diese soll true zurueck geben, wenn der Spieler der am Zug ist im nächsten Zug gewinnen kann. Diese Methode wurde noch nicht von mir angelegt da wir Sie nur für diese Aufgabe benötigen. Legen Sie also eine Definition in der *State.hpp* Datei an und eine Deklaration in der *State.cpp* Datei an.
 
 <details>
   <summary>Lösung header Datei</summary>
 
-Da wir die Methode ausschlieslich innerhalb der State Klasse verwenden sollte die Methode im ```private``` Block sein.
+Da wir die Methode ausschließlich innerhalb der State Klasse verwenden sollte die Methode im ```private``` Block sein.
 
 ```c++
 bool has_winning_move();
@@ -637,7 +637,7 @@ bool has_winning_move();
 <details>
   <summary>Lösung cpp Datei</summary>
 
-Die richtige Implementirung folgt gleich.
+Die richtige Implementierung folgt gleich.
 
 ```c++
 bool State::has_winning_move()
@@ -649,9 +649,9 @@ bool State::has_winning_move()
 </details>
 <br>
 
-Um herauszufinden ob ein Spieler einen Zug hat der direkt zum Sieg fuehrt muessen wir auch wieder ueber alle moeglichen legalen Zuege iterieren. Dieses Mal muessen wir aber die Zuege alle ausprobieren und pruefen ob der Spieler der am Zug war gewonnen hat.
+Um herauszufinden, ob ein Spieler einen Zug hat der direkt zum Sieg führt müssen wir auch wieder über alle möglichen legalen Züge iterieren. Dieses Mal müssen wir aber die Züge alle ausprobieren und prüfen ob der Spieler der am Zug war gewonnen hat.
 
-Hinweis: sie koennen den kompletten Zustand kopieren mit ```State next_state = *this;```. Um einen Zug auszuprobieren sollten sie eine Kopie vom aktuellen Zustand erzeugen und auf der Kopie den Zug ausfuehren.
+Hinweis: Sie können den kompletten Zustand kopieren mit ```State next_state = *this;```. Um einen Zug auszuprobieren, sollten Sie eine Kopie vom aktuellen Zustand erzeugen und auf der Kopie den Zug ausführen.
 
 <details>
   <summary>Lösung has_winning_move</summary>
@@ -686,11 +686,11 @@ bool State::has_winning_move()
 </details>
 <br>
 
-Jetzt muessen wir die ```generate_move``` Methode noch erweitern.
+Jetzt müssen wir die ```generate_move``` Methode noch erweitern.
 
-Wir wollen die Menge der legalen Zuege in drei Kategorien einteilen: gewinnende Zuege, gute Zuege und moegliche Zuege. In den gewinnenden Zuegen sind alle Zuege mit denen wir sofort gewinnen. In den guten Zuegen sind alle Zuege bei denen der Gegner nicht mit seinem naechsten Zug gewinnen kann.
+Wir wollen die Menge der legalen Züge in drei Kategorien einteilen: gewinnende Züge, gute Züge und mögliche Züge. In den gewinnenden Zügen sind alle Züge mit denen wir sofort gewinnen. In den guten Zügen sind alle Züge, bei denen der Gegner nicht mit seinem nächsten Zug gewinnen kann.
 
-Wir benoetigen im Folgenden also drei Vektoren ```std::vector<Move>```.
+Wir benötigen im Folgenden also drei Vektoren.
 
 ```c++
 std::vector<Move> winning_moves;
@@ -698,7 +698,7 @@ std::vector<Move> good_moves;
 std::vector<Move> possible_moves;
 ```
 
-Nun muessen wir auch wieder jeden legalen Zug auf einer Kopie des aktuellen Zustandes ausprobieren. Wenn der Spieler der gerade am Zug ist nach dem Ausfruehren eines Zugs der Gewinner ist fuegen wir den Zug zu den winning_moves hinzu. Wenn dies nicht der Fall ist und der Gegner im naechsten Zug keinen gewinnenden Zug hat dann fuegen wir den Zug zu dem good_moves hinzu. Ausserdem fuegen wir jeden legalen Zug zu possible_moves hinzu. Dannach schauen wir ob wir mindestens einen Zug in den winning_moves haben. Wenn ja fuerhen wir einen der Zuege aus. Wenn nicht schauen wir ob wir einen Zug in good_moves haben. Wenn ja fuehren wir einen davon aus. Wenn die alles nicht der Fall ist fuehren wir einen Zug aus possible_moves aus.
+Nun müssen wir auch wieder jeden legalen Zug auf einer Kopie des aktuellen Zustandes ausprobieren. Wenn der Spieler der gerade am Zug ist, nach dem Ausführen eines Zugs der Gewinner ist, fügen wir den Zug zu den winning_moves hinzu. Wenn dies nicht der Fall ist und der Gegner im nächsten Zug keinen gewinnenden Zug hat, dann fügen wir den Zug zu dem good_moves hinzu. Außerdem fügen wir jeden legalen Zug zu possible_moves hinzu. Danach schauen wir, ob wir mindestens einen Zug in den winning_moves haben. Wenn ja, führen wir einen der Züge aus. Wenn nicht schauen wir, ob wir einen Zug in good_moves haben. Wenn ja, führen wir einen davon aus. Wenn die alles nicht der Fall ist, führen wir einen Zug aus possible_moves aus.
 
 
 <details>
@@ -753,22 +753,22 @@ void State::generate_move()
 </details>
 <br>
 
-Nun sollte es um eineiges Schwieriger sein gegen den Computer zu gewinnen. Es ist aber immer noch moeglich. Immer dann wenn der menschliche Spieler zwei verschiedene gewinnende Zuege in seinen naechsten Zug hat, Spielt der Computer einen zufaelligen Zug und verliert. Das liegt daran dass der Computer nicht weiter als einene Zug in die Zukunft schauen kann. Und somit die erstellung von Zwickmuehlen nicht verhiendern kann. Dies werden wir in der folgenden Aufgabe aendern.
+Nun sollte es, um einiges schwieriger sein gegen den Computer zu gewinnen. Es ist aber immer noch möglich. Immer dann, wenn der menschliche Spieler zwei verschiedene gewinnende Züge in seinen nächsten Zug hat, Spielt der Computer einen zufälligen Zug und verliert. Das liegt daran, dass der Computer nicht weiter als einen Zug in die Zukunft schauen kann. Und somit die Erstellung von Zwickmühlen nicht verhindern kann. Dies werden wir in der folgenden Aufgabe ändern.
 
 ### Aufgabe 4.3 Perfektes Spiel
 
-In dieser Aufgabe werden wir den Minimax algorithmus implementieren. Schauen sie sich dazu dieses Video bis 5:15 (dannach wird alpha-beta pruning erklaert dies benoetigen wir hier noch nicht) an [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI).
+In dieser Aufgabe werden wir den Minimax Algorithmus implementieren. Schauen Sie sich dazu dieses Video bis 5:15 (danach wird alpha-beta pruning erklärt dies benötigen wir hier noch nicht) an [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI).
 
-Wichtig: Wir benoetigen KEINE *static evaluation* da ein Tic-tac-toe Spiel maximal 9 Zuege lang ist und wir somit den Search Tree ganz durchrechnen koennen.
+Wichtig: Wir benötigen KEINE *static evaluation* da ein Tic-tac-toe Spiel maximal 9 Züge lang ist und wir somit den Search Tree ganz durchrechnen können.
 
-Hinweis: In Tic-tac-toe gibt es nur 3 bewertungen: -1 fuer einen verlorenen Zustand, 0 fuer ein Unentschieden und 1 fuer einen gewonnen Zustand.
+Hinweis: In Tic-tac-toe gibt es nur 3 Bewertungen: -1 für einen verlorenen Zustand, 0 für ein Unentschieden und 1 für einen gewonnen Zustand.
 
 Wir implementieren den Algorithmus in der Methode ```minimax```.
-Beginnen wir mit dem Rekursionsende. Also ein Zustand der entweden von einem Spieler gewonnen wurde oder unentschieden ist.
+Beginnen wir mit dem Rekursionsende. Also ein Zustand, der entweder von einem Spieler gewonnen wurde oder unentschieden ist.
 
-Testen sie zuerste ob es einen Gewinner gibt. Wenn ja geben sie -1 zurueck. Wir muessen in diesem Fall nicht einmal testen wer gewonnen hat. Denn wenn z.b. Spieler Kreuz am Zug ist aber schon ein Gewinner feststeht, dann hat spieler Kreis im letzten Zug gewonnen. Und der Kreuz Spieler hat verloren.
+Testen Sie zuerst, ob es einen Gewinner gibt. Wenn ja, geben Sie -1 zurück. Wir müssen in diesem Fall nicht einmal testen, wer gewonnen hat. Denn wenn z.b. Spieler Kreuz am Zug ist aber schon ein Gewinner feststeht, dann hat Spieler Kreis im letzten Zug gewonnen. Und der Kreuz-Spieler hat verloren.
 
-Wenn es noch keinen Gewinner gibt aber schon 9 Zuege gespielt wurden geben sie 0 zurueck da es sich um eine Unentschieden handelt.
+Wenn es noch keinen Gewinner gibt, aber schon 9 Züge gespielt wurden geben Sie 0 zurück da es sich um eine Unentschieden handelt.
 
 
 <details>
@@ -793,7 +793,7 @@ int State::minimax()
 </details>
 <br>
 
-Nun implementieren wir den rekursiven Teil. Zuerst benoetigen wir eine Variable in der wir unseren Maximalen score speichern. Diese Variable koennen wir mit -1 initialisieren da wir definitv nichts schlechteres finden werden als -1. Nun muessen wir, wie schon in der Vorherigen Aufgabe, ueber alle legalen Zuege iterieren und diese auf einer Kopie ausprobieren. Aber nachdem wir den Zug ausprobiert haben rufen wir auf den neuen Zustand die minimax Methode auf. Den zurueckgegebenen Wert des minimax aufrufs negieren wir (also wir wechseln das Vorzeichen). Da ein guter naechster Zug von Gegner ja schlecht fuer uns ist und ein Schlechter naechster Zug vom Gegener gut fuer uns ist. Wenn der Gegner im naechsten Zug gewinnen kann gibt uns der minimax aufruf eine 1 zurueck. Wir negieren die 1 zu -1 (also ein Verloren). Dann schauen wir ob der Score dieses Zuges besser (groesser) als der bisherige maximale Score. Wenn dies der Fall ist updaten wir den maximalen Score. Am Ende der Methode geben wir den maximalen Score zurueck.
+Nun implementieren wir den rekursiven Teil. Zuerst benötigen wir eine Variable, in der wir unseren Maximalen Score speichern. Diese Variable können wir mit -1 initialiSieren da wir definitiv nichts Schlechteres finden werden als -1. Nun müssen wir, wie schon in der vorherigen Aufgabe, über alle legalen Züge iterieren und diese auf einer Kopie ausprobieren. Aber nachdem wir den Zug ausprobiert haben rufen wir auf den neuen Zustand die minimax Methode auf. Den zurückgegebenen Wert des minimax Aufrufs negieren wir (also wir wechseln das Vorzeichen). Da ein guter nächster Zug von Gegner ja schlecht für uns ist und ein Schlechter nächster Zug vom Gegner gut für uns ist. Wenn der Gegner im nächsten Zug gewinnen kann, gibt uns der minimax Aufruf eine 1 zurück. Wir negieren die 1 zu -1 (also ein Verloren). Dann schauen wir ob der Score dieses Zuges besser (größer) als der bisherige maximale Score. Wenn dies der Fall ist, updaten wir den maximalen Score. Am Ende der Methode geben wir den maximalen Score zurück.
 
 <details>
   <summary>Lösung minimax</summary>
@@ -842,14 +842,14 @@ int State::minimax()
 </details>
 <br>
 
-Nun muessen wir diese *bewertungs Funktion* in der ```generate_move``` Methode verwenden. 
-Wir werden diese Methode neu schreiben. Zuerst benoetigen wir einen Vektor der die Menge an besten Zuegen speichert. Wir machen das da es mehrere Zuege geben kann die die gleiche Bewertung haben (vor allem da wir ja nur drei verschiedene Bewertungen haben). Wenn wir dann einen zufaelligen Zug aus der Liste auswaehlen, spielt der Computer bei gleicher Eingabe nicht immer den gleichen Zug.
-Wir benoetigen zudem auch nochmal eine Variable um den maximalen Score zu speichern.
-Dann iterieren wir ueber alle legalen Zuege und fuehren diesen Zug auf einer Kopie des aktuellen Zustandes aus. Dann rufen wir die minimax Methode auf dem neuen Zustand auf und negieren auch wieder den Wert. Nun pruefen wir ob der neue Score groesser ist als der bisherige maximale Score. Wenn ja, dann leeren wir unseren Vektor an besten Zuegen da diese alle schlechter sind als unser aktueller Zug. Ausserdem updaten wir den bisherigen maximalen Score. Unabhaenig davon testen wir ob die neue Score gleich dem Maximalen ist. Wenn dies der Fall ist fuegen wir den neuen Zug zur liste bester Zuege hinzu.
+Nun müssen wir diese *bewertungs Funktion* in der ```generate_move``` Methode verwenden.
+Wir werden diese Methode neu schreiben. Zuerst benötigen wir einen Vektor der die Menge an besten Zügen speichert. Wir machen das da es mehrere Züge geben kann, die die gleiche Bewertung haben (vor allem da wir ja nur drei verschiedene Bewertungen haben). Wenn wir dann einen zufälligen Zug aus der Liste auswählen, spielt der Computer bei gleicher Eingabe nicht immer den gleichen Zug.
+Wir benötigen zudem auch nochmal eine Variable, um den maximalen Score zu speichern.
+Dann iterieren wir über alle legalen Züge und führen diesen Zug auf einer Kopie des aktuellen Zustandes aus. Dann rufen wir die minimax Methode auf dem neuen Zustand auf und negieren auch wieder den Wert. Nun prüfen wir ob der neue Score größer ist als der bisherige maximale Score. Wenn ja, dann leeren wir unseren Vektor an besten Zügen da diese alle schlechter sind als unser aktueller Zug. Außerdem updaten wir den bisherigen maximalen Score. Unabhängig davon testen wir, ob die neue Score gleich dem Maximalen ist. Wenn dies der Fall ist, fügen wir den neuen Zug zur Liste bester Züge hinzu.
 
-Wenn wir durch alle legalen Zuege iteriert sind muessen wir nur noch einen zufaeligen Zug aus dem Vektor ausfuerhen. Optional kann man den Zug auch mit ```move.print()``` auf der Konsole ausgeben.
+Wenn wir durch alle legalen Züge iteriert sind, müssen wir nur noch einen zufälligen Zug aus dem Vektor ausführen. Optional kann man den Zug auch mit ```move.print()``` auf der Konsole ausgeben.
 
-Hinweis: wir benoetigen die Methode ```has_winning_move``` nicht mehr. Sie koennen sie also entfernen.
+Hinweis: wir benötigen die Methode ```has_winning_move``` nicht mehr. Sie können Sie also entfernen.
 
 <details>
   <summary>Lösung minimax</summary>
@@ -895,16 +895,16 @@ void State::generate_move()
 </details>
 <br>
 
-Wenn sie alles richtig gemacht haben. Sollte es jetzt unmoeglich sein gegen den Computer zu gewinnen. Wenn sie keine Fehler machen koennen sie ein Unentschieden erreichen. Ansonnsten verlieren sie.
+Wenn Sie alles richtig gemacht haben, sollte es jetzt unmöglich sein gegen den Computer zu gewinnen. Wenn Sie keine Fehler machen können Sie ein Unentschieden erreichen, ansonsten verlieren Sie.
 
 ## Interessante erweiterungen
 
-* Sie koennen in der main Funktion den Aufruf ```state.read_move();``` durch ```state.generate_move();``` ersetzen. Dann spielt der Computer gegen sich selbst. Ein solches Spiel wird immer als Unentschieden ausgehen.
+* Sie können in der main Funktion den Aufruf ```state.read_move();``` durch ```state.generate_move();``` ersetzen. Dann spielt der Computer gegen sich selbst. Ein solches Spiel wird immer als Unentschieden ausgehen.
 
-* Aendern sie die Zugreihenfolge so dass der Computer den ersten Zug hat also als Kreuz spielt. Und sie als Kreis spielen. (Achtung: Sie muessen die Konsolen ausgabe des Feldes auch anpassen sonnst sehen sie nicht was der Computer gespielt hat.)
+* Ändern Sie die Zugreihenfolge so, dass der Computer den ersten Zug hat also als Kreuz spielt. Und Sie als Kreis spielen. (Achtung: Sie müssen die Konsolen Ausgabe des Feldes auch anpassen sonst sehen Sie nicht was der Computer gespielt hat.)
 
-* Lassen sie die AI aus Aufgabe 4.2 gegen die AI aus Aufgabe 4.3 Spielen.
+* Lassen Sie die AI aus Aufgabe 4.2 gegen die AI aus Aufgabe 4.3 Spielen.
 
-* Wenn sie den die Methode ```generate_moves``` auf ein leeres Feld aufrufen. Berechnet die minimax Mehtode alle moeglichen Spielverlaufe. Sie koennen hier mitzaehlen wie viele verschiedene Spiele es gibt bei denen Kreuz oder Kreis gewinnt oder es ein unentschieden gibt.
+* Wenn Sie den die Methode ```generate_moves``` auf ein leeres Feld aufrufen. Berechnet die minimax Methode alle möglichen Spiel verlaufe. Sie können hier mitzählen wie viele verschiedene Spiele es gibt bei denen Kreuz oder Kreis gewinnt oder es ein unentschieden gibt.
 
-* Schauen sie das Video [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI) zu Ende und implementieren sie alpha-beta pruning. (Loesung dazu gibt es bald hier!)
+* Schauen Sie das Video [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI) zu Ende und implementieren Sie alpha-beta pruning. (Lösung dazu gibt es bald hier!)
