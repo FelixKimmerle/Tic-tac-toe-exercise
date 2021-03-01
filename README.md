@@ -1,27 +1,27 @@
 # Tic-tac-toe
 
 In dieser Aufgabe werden Sie das Spiel Tic-tac-toe programmieren.
-Außerdem werden Sie zwei verschiedene Versionen einer AI programmieren, gegen die Sie dann spielen können. Bitte versuchen Sie immer zuerst die Aufgabe selber zu lösen und schauen erst dann in die Lösung. Die hier angegeben Lösungen sind nur möglichkeiten. Wenn Sie es anderst gemacht haben bedeutet das auf keinen Fall das es falsch sein muss.
+Außerdem werden Sie zwei verschiedene Versionen einer AI programmieren, gegen die Sie dann spielen können. Bitte versuchen Sie immer zuerst die Aufgabe selber zu lösen und schauen erst dann in die Lösung. Die hier angegebenen Lösungen sind nur Möglichkeiten. Wenn Sie es anders gemacht haben, bedeutet das auf keinen Fall, dass es falsch sein muss.
 
-Wenn ihnen Fehler auffallen, Sie Fragen haben oder wissen wollen ob ihre Lösung auch richtig ist, schreiben sie mir gerne eine E-Mail an st166635@stud.uni-stuttgart.de oder klicken sie <a href="mailto:st166635@stud.uni-stuttgart.de">hier!</a> 
+Wenn ihnen Fehler auffallen, Sie Fragen haben oder wissen wollen, ob ihre Lösung auch richtig ist, schreiben sie mir gerne eine E-Mail an st166635@stud.uni-stuttgart.de oder klicken sie <a href="mailto:st166635@stud.uni-stuttgart.de">hier!</a> 
 
 ## Vorbereitung
 
-* Windows: Gehen Sie auf [Codeblocks download Windows](https://www.codeblocks.org/downloads/binaries/) und laden Sie eine Version herunter die den mingw Compiler mitbringt. Für die meisten sollte *codeblocks-XX.XXmingw-setup.exe* die richtige sein.
+* Windows: Gehen Sie auf [Codeblocks download Windows](https://www.codeblocks.org/downloads/binaries/) und laden Sie eine Version herunter die den mingw Compiler mitbringt. Für die meisten sollte *codeblocks-XX.XXmingw-setup.exe* die Richtige sein.
 
-* Linux: Wenn Sie eine Debian nahe Distribution wie Debian, Ubuntu oder Popos verwenden können Sie Codeblocks einfach installieren in dem Sie ```sudo apt install codeblocks``` in eine Konsole eingeben. Wenn Sie eine andere Distribution verwenden müssen Sie sich auf der download Seite selbst informieren [Codeblocks download Linux](https://www.codeblocks.org/downloads/binaries/#imagesoslinux48pnglogo-linux-32-and-64-bit).
+* Linux: Wenn Sie eine Debian nahe Distribution wie Debian, Ubuntu oder Pop!_OS verwenden, können Sie Codeblocks einfach installieren, indem Sie ```sudo apt install codeblocks``` in eine Konsole eingeben. Wenn Sie eine andere Distribution verwenden, müssen Sie sich auf der download Seite selbst informieren [Codeblocks download Linux](https://www.codeblocks.org/downloads/binaries/#imagesoslinux48pnglogo-linux-32-and-64-bit).
 
-Öffnen Sie dann die Projektdatei Tic-tac-toe.cbp mit Codeblocks. Entweder mit Doppelklick auf die Datei oder in Codeblocks mit *File -> Open* und suchen Sie dann die Projektdatei.
+Öffnen Sie dann die Projektdatei Tic-tac-toe.cbp mit Codeblocks, entweder mit Doppelklick auf die Datei oder in Codeblocks mit *File -> Open* und suchen Sie dann die Projektdatei.
 
 ## Der vorhandene Code
 
 Ich habe den Code in mehrere Dateien aufgeteilt.
-Um die Aufgabe zu lösen müssen Sie auch nicht verstehen wie es funktioniert.
+Um die Aufgabe zu lösen, müssen Sie nicht verstehen wie das Aufteilen funktioniert.
 Falls es Sie trotzdem interessiert können Sie es hier nachlesen [Splitting code into several files](http://cse230.artifice.cc/lecture/splitting-code.html#:~:text=C%2B%2B%20offers%20a%20very%20simplistic,was%20written%20in%20one%20file.).
 
 ## Die Move Klasse
 
-Schauen Sie zuerst in die Datei: Move.h und Move.cpp. Diese Klasse repräsentiert einen *Zug* im Spiel. Ein *Zug* in Tic-tac-toe besteht daraus an eine Position im Feld sein Zeichen zu setzen. Wir speichern die Position mithilfe von zwei *int's*. Einen für die Zeile und einen für die Spalte. Die *print* Funktion müssen Sie nicht verstehen!
+Schauen Sie zuerst in die Datei: Move.h und Move.cpp. Diese Klasse repräsentiert einen *Zug* im Spiel. Ein *Zug* in Tic-tac-toe besteht daraus, an eine Position im Feld sein Zeichen zu setzen. Wir speichern die Position mithilfe von zwei *ints*. Einen für die Zeile und einen für die Spalte. Die *print* Funktion müssen Sie nicht verstehen!
 
 ## Die State Klasse
 
@@ -29,13 +29,13 @@ Schauen wir nun in die Datei: State.h
 
 ### Enum Player
 
-Wir verwenden den Typ Player um zu speichern, ob eine Zelle frei, mit einem Kreuz oder einem Kreis belegt ist. In diesem Fall steht 'Player::None' für eine leere Zelle, 'Player::Cross' für eine, mit einem Kreuz belegten Zelle und 'Player::Nought' für eine, mit einem Kreis belegte Zelle.
+Wir verwenden den Typ Player, um zu speichern, ob eine Zelle frei, mit einem Kreuz oder einem Kreis belegt ist. In diesem Fall steht 'Player::None' für eine leere Zelle, 'Player::Cross' für eine, mit einem Kreuz belegte Zelle und 'Player::Nought' für eine, mit einem Kreis belegte Zelle.
 
 ### 2D Array field
 
-In der Vorlesung wurden eindimensionale Arrays vorgestellt. Wir verwenden hier nun einen zweidimensionalen Array, um das Feld zu speichern. Man verwendet diese fast genau so wie die normalen Arrays.
+In der Vorlesung wurden eindimensionale Arrays vorgestellt. Wir verwenden hier nun einen zweidimensionalen Array, um das Feld zu speichern. Man verwendet diese fast genau so wie die eindimensionalen Arrays.
 
-Hier wird das Feld erstellt mit der größe 3×3. Also insgesamt gibt es neun Zellen:
+Hier wird das Feld erstellt mit der Größe 3×3. Also insgesamt gibt es neun Zellen:
 
 ```c++
 Player field[3][3];
@@ -66,7 +66,7 @@ field[2][2] = Player::Cross;
 
 Hier besetzen wir die untere rechte Zelle mit einem Kreuz.
 
-Der folgen Tabelle können Sie alle Koordinaten entnehmen:
+Der folgenden Tabelle können Sie alle Koordinaten entnehmen:
 
 |     | 0      | 1      | 2      |
 | --- | ------ | ------ | ------ |
@@ -86,26 +86,28 @@ Speichert den Spieler, der gerade am Zug ist.
 Player winner;
 ```
 
-Speichert den Gewinner im aktuellen Zustand. Solange keiner gewonnen hat oder es unentschieden steht, sollte 'winner == Player::None' gelten.
+Speichert den Gewinner im aktuellen Zustand. Solange keiner gewonnen hat oder es Unentschieden steht, sollte 'winner == Player::None' gelten.
 
 ```c++
 int moves;
 ```
 
-Speichert die Anzahl an Zügen, die gespielt wurden. Diese Zahl benötigen wir, um ein unentschieden zu erkennen. Wenn neun Züge gespielt wurden und kein Gewinner feststeht, haben wir ein unentschieden.
+Speichert die Anzahl an Zügen, die gespielt wurden. Diese Zahl benötigen wir, um ein Unentschieden zu erkennen. Wenn neun Züge gespielt wurden und kein Gewinner feststeht, haben wir ein Unentschieden.
 
 ### Die Funktionen
 
 Die Funktionen: *print*, *print_empty_line* und *print_line* müssen Sie nicht verstehen. Diese sind nur dazu da, das Feld "schön" in der Konsole auszugeben.
 
-Die restlichen Funktionen werden Sie in den folgenden Aufgaben selber in der Datei: *State.cpp* implementieren.
+Die restlichen Methoden werden Sie in den folgenden Aufgaben selber, in der Datei: *State.cpp*, implementieren.
 
 ## Aufgabe 1
 
-In C++ müssen wir alle Membervariablen im Konstruktor initialisieren da Sie nicht automatisch auf 0 (oder ihren Standardwert) gesetzt werden. Implementieren Sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
+In C++ müssen wir alle Membervariablen im Konstruktor initialisieren, da Sie nicht automatisch auf 0 (oder ihren Standardwert) gesetzt werden. Implementieren Sie den Konstruktor der Klasse State in der Datei *State.cpp*. 
+
+*Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
 
 <details>
-  <summary>Lösungen</summary>
+  <summary>Lösungen (Anklicken zum Aufklappen)</summary>
   
 Sie müssen die Anzahl der Züge auf 0 setzen:
 
