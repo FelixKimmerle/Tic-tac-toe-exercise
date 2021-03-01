@@ -897,9 +897,9 @@ void State::generate_move()
 
 Wenn Sie alles richtig gemacht haben, sollte es jetzt unmöglich sein gegen den Computer zu gewinnen. Wenn Sie keine Fehler machen können Sie ein Unentschieden erreichen, ansonsten verlieren Sie.
 
-## Interessante erweiterungen
+## Interessante Erweiterungen
 
-* Sie können in der main Funktion den Aufruf ```state.read_move();``` durch ```state.generate_move();``` ersetzen. Dann spielt der Computer gegen sich selbst. Ein solches Spiel wird immer als Unentschieden ausgehen.
+* Sie können in der main Funktion den Aufruf ```state.read_move();``` durch ```state.generate_move();``` ersetzen. Dann spielt der Computer gegen sich selbst. Ein solches Spiel wird immer Unentschieden ausgehen.
 
 * Ändern Sie die Zugreihenfolge so, dass der Computer den ersten Zug hat also als Kreuz spielt. Und Sie als Kreis spielen. (Achtung: Sie müssen die Konsolen Ausgabe des Feldes auch anpassen sonst sehen Sie nicht was der Computer gespielt hat.)
 
