@@ -913,7 +913,7 @@ Wenn Sie alles richtig gemacht haben, sollte es jetzt unmöglich sein gegen, den
 
 * Lassen Sie die AI aus Aufgabe 4.2 gegen die AI aus Aufgabe 4.3 spielen.
 
-* Wenn Sie die Methode ```generate_moves``` auf ein leeres Feld aufrufen, berechnet die minimax Methode alle möglichen Spiel verläufe. Sie können hier mitzählen, wieviele verschiedene Spiele es gibt, bei denen Kreuz oder Kreis gewinnt oder es ein Unentschieden gibt.
+* Wenn Sie die Methode ```generate_moves``` auf ein leeres Feld aufrufen, berechnet die minimax Methode alle möglichen Spielverläufe. Sie können hier mitzählen, wieviele verschiedene Spiele es gibt, bei denen Kreuz oder Kreis gewinnt oder es ein Unentschieden gibt.
 
 * Schauen Sie das Video [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI) zu Ende und implementieren Sie alpha-beta pruning. (Meine Lösung dazu gibt es [hier!](https://github.com/FelixKimmerle/Tic-tac-toe-alpha-beta-pruning))
 
