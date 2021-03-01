@@ -17,7 +17,7 @@ Wenn ihnen Fehler auffallen, Sie Fragen haben oder wissen wollen ob ihre Lösung
 
 Ich habe den Code in mehrere Dateien aufgeteilt.
 Um die Aufgabe zu lösen müssen Sie auch nicht verstehen wie es funktioniert.
-Falls es Sie trotzdem interesSiert können Sie es hier nachlesen [Splitting code into several files](http://cse230.artifice.cc/lecture/splitting-code.html#:~:text=C%2B%2B%20offers%20a%20very%20simplistic,was%20written%20in%20one%20file.).
+Falls es Sie trotzdem interessiert können Sie es hier nachlesen [Splitting code into several files](http://cse230.artifice.cc/lecture/splitting-code.html#:~:text=C%2B%2B%20offers%20a%20very%20simplistic,was%20written%20in%20one%20file.).
 
 ## Die Move Klasse
 
@@ -102,7 +102,7 @@ Die restlichen Funktionen werden Sie in den folgenden Aufgaben selber in der Dat
 
 ## Aufgabe 1
 
-In C++ müssen wir alle Membervariablen im Konstruktor initialiSieren da Sie nicht automatisch auf 0 (oder ihren Standardwert) gesetzt werden. Implementieren Sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
+In C++ müssen wir alle Membervariablen im Konstruktor initialisieren da Sie nicht automatisch auf 0 (oder ihren Standardwert) gesetzt werden. Implementieren Sie den Konstruktor der Klasse State in der Datei *State.cpp*. *Hinweis*: In Tic-tac-toe macht immer Kreuz den ersten Zug.
 
 <details>
   <summary>Lösungen</summary>
@@ -399,7 +399,7 @@ Ergänzen Sie die Methode update_winner.
 * Testen Sie, ob das neue Zeichen auf der Diagonalen liegt und testen Sie gegebenenfalls die Diagonale auf drei gleiche Zeichen.
 * Testen Sie, ob das neue Zeichen auf der Gegen-Diagonalen liegt und testen Sie gegebenenfalls die Gegen-Diagonale auf drei gleiche Zeichen.
 
-Wenn Sie drei gleiche gefunden haben, setzen Sie die Variable ```winner``` auf den Siegreichen Spieler. Wenn Sie keinen Sieger gefunden haben soll die Variable ```winner``` unveraendert bleiben.
+Wenn Sie drei gleiche gefunden haben, setzen Sie die Variable ```winner``` auf den siegreichen Spieler. Wenn Sie keinen Sieger gefunden haben soll die Variable ```winner``` unveraendert bleiben.
 
 <details>
   <summary>Lösung Pruefe Spalte</summary>
@@ -549,7 +549,7 @@ Nun sollten Sie gegen sich selber spielen können. Um die ```update_winner``` Me
 
 ### Aufgabe 4.1 Zufall
 
-Im ersten Schritt wollen wir eine ganz banale AI die einfach zufällige Züge spielt. Dazu müssen wir zuerst einen Seed setzen da sonst der Computer bei gleicher Eingabe auch immer das Gleiche spielt. So wäre er viel zu einfach zu beSiegen da man sich nur ein Spiel merken muss, das man schon einmal gewonnen hat.
+Im ersten Schritt wollen wir eine ganz banale AI die einfach zufällige Züge spielt. Dazu müssen wir zuerst einen Seed setzen da sonst der Computer bei gleicher Eingabe auch immer das Gleiche spielt. So wäre er viel zu einfach zu besiegen da man sich nur ein Spiel merken muss, das man schon einmal gewonnen hat.
 
 Um den Seed zu setzen, verwenden wir:
 
@@ -795,7 +795,7 @@ int State::minimax()
 </details>
 <br>
 
-Nun implementieren wir den rekursiven Teil. Zuerst benötigen wir eine Variable, in der wir unseren Maximalen Score speichern. Diese Variable können wir mit -1 initialiSieren da wir definitiv nichts Schlechteres finden werden als -1. Nun müssen wir, wie schon in der vorherigen Aufgabe, über alle legalen Züge iterieren und diese auf einer Kopie ausprobieren. Aber nachdem wir den Zug ausprobiert haben rufen wir auf den neuen Zustand die minimax Methode auf. Den zurückgegebenen Wert des minimax Aufrufs negieren wir (also wir wechseln das Vorzeichen). Da ein guter nächster Zug von Gegner ja schlecht für uns ist und ein Schlechter nächster Zug vom Gegner gut für uns ist. Wenn der Gegner im nächsten Zug gewinnen kann, gibt uns der minimax Aufruf eine 1 zurück. Wir negieren die 1 zu -1 (also ein Verloren). Dann schauen wir ob der Score dieses Zuges besser (größer) als der bisherige maximale Score. Wenn dies der Fall ist, updaten wir den maximalen Score. Am Ende der Methode geben wir den maximalen Score zurück.
+Nun implementieren wir den rekursiven Teil. Zuerst benötigen wir eine Variable, in der wir unseren Maximalen Score speichern. Diese Variable können wir mit -1 initialisieren da wir definitiv nichts Schlechteres finden werden als -1. Nun müssen wir, wie schon in der vorherigen Aufgabe, über alle legalen Züge iterieren und diese auf einer Kopie ausprobieren. Aber nachdem wir den Zug ausprobiert haben rufen wir auf den neuen Zustand die minimax Methode auf. Den zurückgegebenen Wert des minimax Aufrufs negieren wir (also wir wechseln das Vorzeichen). Da ein guter nächster Zug von Gegner ja schlecht für uns ist und ein Schlechter nächster Zug vom Gegner gut für uns ist. Wenn der Gegner im nächsten Zug gewinnen kann, gibt uns der minimax Aufruf eine 1 zurück. Wir negieren die 1 zu -1 (also ein Verloren). Dann schauen wir ob der Score dieses Zuges besser (größer) als der bisherige maximale Score. Wenn dies der Fall ist, updaten wir den maximalen Score. Am Ende der Methode geben wir den maximalen Score zurück.
 
 <details>
   <summary>Lösung minimax</summary>
