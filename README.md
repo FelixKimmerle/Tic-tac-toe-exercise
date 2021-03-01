@@ -566,7 +566,7 @@ Speichern Sie alle legalen Zuege in einem Vektor.
 Fuehren Sie dannach einen zufaelligen Zug aus dem Vektor aus.
 
 <details>
-  <summary>Lösung zufaellige Zug generierung</summary>
+  <summary>Lösung zufällige Zug generierung</summary>
 
 
 ```c++
