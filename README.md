@@ -909,6 +909,6 @@ Wenn Sie alles richtig gemacht haben, sollte es jetzt unmöglich sein gegen den 
 
 * Wenn Sie den die Methode ```generate_moves``` auf ein leeres Feld aufrufen. Berechnet die minimax Methode alle möglichen Spiel verlaufe. Sie können hier mitzählen wie viele verschiedene Spiele es gibt bei denen Kreuz oder Kreis gewinnt oder es ein unentschieden gibt.
 
-* Schauen Sie das Video [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI) zu Ende und implementieren Sie alpha-beta pruning. (Lösung dazu gibt es [hier!](https://github.com/FelixKimmerle/Tic-tac-toe-alpha-beta-pruning))
+* Schauen Sie das Video [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI) zu Ende und implementieren Sie alpha-beta pruning. (Meine Lösung dazu gibt es [hier!](https://github.com/FelixKimmerle/Tic-tac-toe-alpha-beta-pruning))
 
-Lösungen für das ganze Blatt gibt es [hier!](https://github.com/FelixKimmerle/Tic-tac-toe-solution)
+Meine Lösungen für das ganze Blatt gibt es [hier!](https://github.com/FelixKimmerle/Tic-tac-toe-solution)
