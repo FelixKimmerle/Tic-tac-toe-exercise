@@ -3,7 +3,7 @@
 In dieser Aufgabe werden Sie das Spiel Tic-tac-toe programmieren.
 Außerdem werden Sie zwei verschiedene Versionen einer AI programmieren, gegen die Sie dann spielen können. Bitte versuchen Sie immer zuerst die Aufgabe selber zu lösen und schauen erst dann in die Lösung. Die hier angegeben Lösungen sind nur möglichkeiten. Wenn Sie es anderst gemacht haben bedeutet das auf keinen Fall das es falsch sein muss.
 
-Wenn ihnen Fehler auffallen, Sie Fragen haben oder wissen wollen ob ihre Lösung auch richtig ist, schreiben sie mir gerne eine E-Mail an st166635@stud.uni-stuttgart.de oder klicken sie [hier!]("mailto:st166635@stud.uni-stuttgart.de")
+Wenn ihnen Fehler auffallen, Sie Fragen haben oder wissen wollen ob ihre Lösung auch richtig ist, schreiben sie mir gerne eine E-Mail an st166635@stud.uni-stuttgart.de oder klicken sie <a href="mailto:st166635@stud.uni-stuttgart.de">hier!</a> 
 
 ## Vorbereitung
 
