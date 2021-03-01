@@ -545,4 +545,213 @@ Nun sollten sie gegen sich selber spielen koennen. Um die ```update_winner``` Me
 
 ## Aufgabe 4
 
-## Diese Aufgabe ist noch nicht ganz fertig. Wird aber bis 01.03.2021 Verfuegbar sein.
+### Aufgabe 4.1 Zufall
+
+Im ersten schritt wollen wir eine ganz banale AI die einfach zufaellige Zuege spielt. Dazu muessen wir zuerst einen Seed setzen da sonnst der Computer bei gleicher Eingabe auch immer das gleiche spielt. So waere er viel zu einfach zu besiegen da man sich nur ein Spiel merken muss das man schon einmal gewonnen hat.
+
+Um den Seed zu setzen verwenden wir:
+
+```c++
+srand(time(0));
+```
+
+```time(0)``` gibt die Anzahl an Sekunden seit 01.01.1970 00:00 zurueck. Das ist fuer unsere Zwecke zufaellig genug.
+Dies rufen wir ganz am Anfang unseres Programmes in der main Funktion auf. 
+
+Nun gehen wir in der Mehtode ```generate_move```. Dort wollen wir Zuerst alle moeglichen legalen Zuege finden und dann zufaellig einen auswaehlen.
+
+Um alle legalen Zuege zu finden iterieren wir ueber alle Zellen im Feld und testen ob die Zelle gleich Player::Empty ist.
+
+Speichern sie alle legalen Zuege in einem ```std::vector<Move>```.
+Fuehren sie dannach einen zufaelligen Zug aus dem vector aus.
+
+<details>
+  <summary>Lösung zufaellige Zug generierung</summary>
+
+
+```c++
+std::vector<Move> possible_moves;
+
+for (int row = 0; row < 3; row++)
+{
+    for (int column = 0; column < 3; column++)
+    {
+        if (field[column][row] == Player::None)
+        {
+            possible_moves.push_back(Move(column, row));
+        }
+    }
+}
+execute(possible_moves[rand() % possible_moves.size()]);
+```
+
+</details>
+<br>
+
+Nun muessen wir noch die main Funktion abaendern sodass in jedem zweiten Zug der Computer einen zufaelligen Zug spielt. Nach dem aufrufen der Methode ```read_move``` muessen sie nochmal testen ob das Spiel nicht eventuell im letzten Zug beendet wurde. Dann koennen sie ```generate_move``` aufrufen.
+
+
+<details>
+  <summary>Lösung main</summary>
+
+
+```c++
+while (!state.has_ended())
+{
+    //Read a move from the user.
+    state.read_move();
+
+    if (!state.has_ended())
+    {
+        //Execute a computer move.
+        state.generate_move();
+    }
+
+    //Print the updated state.
+    state.print();
+}
+```
+
+</details>
+<br>
+
+Nun koennen sie ein paar Spiele spielen, sollten aber keine Probleme damit haben zu gewinnen.
+
+### Aufagabe 4.2 Ein Zug in die Zukunft
+
+Nun wollen wir den Computer ein wenig Schlauer machen. Wenn der Computer zwei gleiche in einer Zeile/Spalte/Diagonalen hat, die dritte Zelle frei ist und er am Zug ist, wollen wir dass der Computer den gewinnenden Zug spielt. Ausserdem wollen wir, dass wenn der menschliche Gegner im naechsten Zug gewinnen kann, der Computer die so gut es geht vereitelt.
+
+Dazu benoetigen wir eine neue Methode ```has_winning_move```. Diese soll true zurueck geben wenn der Spieler der am Zug ist im naechsten Zug gewinnen kann. Diese Methode wurde noch nicht von mir angelegt da wir sie nur fuer diese Aufgabe benoetigen. Legen sie also eine Defenition in der *State.hpp* Datei an und eine Deklaration in der *State.cpp* Datei an.
+
+<details>
+  <summary>Lösung header Datei</summary>
+
+Da wir die Methode ausschlieslich innerhalb der State Klasse verwenden sollte die Methode im ```private``` Block sein.
+
+```c++
+bool has_winning_move();
+```
+
+</details>
+
+<details>
+  <summary>Lösung cpp Datei</summary>
+
+Die richtige Implementirung folgt gleich.
+
+```c++
+bool State::has_winning_move()
+{
+  return false;
+}
+```
+
+</details>
+<br>
+
+Um herauszufinden ob ein Spieler einen Zug hat der direkt zum Sieg fuehrt muessen wir auch wieder ueber alle moeglichen legalen Zuege iterieren. Dieses Mal muessen wir aber die Zuege alle ausprobieren und pruefen ob der Spieler der am Zug war gewonnen hat.
+
+Hinweis: sie koennen den kompletten Zustand kopieren mit ```State next_state = *this;```. Um einen Zug auszuprobieren sollten sie eine Kopie vom aktuellen Zustand erzeugen und auf der Kopie den Zug ausfuehren.
+
+<details>
+  <summary>Lösung has_winning_move</summary>
+
+
+```c++
+bool State::has_winning_move()
+{
+    if (winner == Player::None) // If we already have a winner then we return false
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int column = 0; column < 3; column++)
+            {
+                if (field[column][row] == Player::None)
+                {
+                    State next_state = *this; // Create Copy
+                    Move move(column, row);
+                    next_state.execute(move); // Execute the move on the copy
+                    if (next_state.get_winner() == turn)
+                    {
+                        return true; // Found winning move
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+```
+
+</details>
+<br>
+
+Jetzt muessen wir die ```generate_move``` Methode noch erweitern.
+
+Wir wollen die Menge der legalen Zuege in drei Kategorien einteilen: gewinnende Zuege, gute Zuege und moegliche Zuege. In den gewinnenden Zuegen sind alle Zuege mit denen wir sofort gewinnen. In den guten Zuegen sind alle Zuege bei denen der Gegner nicht mit seinem naechsten Zug gewinnen kann.
+
+Wir benoetigen im Folgenden also drei Vektoren ```std::vector<Move>```.
+
+```c++
+std::vector<Move> winning_moves;
+std::vector<Move> good_moves;
+std::vector<Move> possible_moves;
+```
+
+Nun muessen wir auch wieder jeden legalen Zug auf einer Kopie des aktuellen Zustandes ausprobieren. Wenn der Spieler der gerade am Zug ist nach dem Ausfruehren eines Zugs der Gewinner ist fuegen wir den Zug zu den winning_moves hinzu. Wenn dies nicht der Fall ist und der Gegner im naechsten Zug keinen gewinnenden Zug hat dann fuegen wir den Zug zu dem good_moves hinzu. Ausserdem fuegen wir jeden legalen Zug zu possible_moves hinzu. Dannach schauen wir ob wir mindestens einen Zug in den winning_moves haben. Wenn ja fuerhen wir einen der Zuege aus. Wenn nicht schauen wir ob wir einen Zug in good_moves haben. Wenn ja fuehren wir einen davon aus. Wenn die alles nicht der Fall ist fuehren wir einen Zug aus possible_moves aus.
+
+
+<details>
+  <summary>Lösung generate_move</summary>
+
+
+```c++
+std::vector<Move> winning_moves;
+    std::vector<Move> good_moves;
+    std::vector<Move> possible_moves;
+
+    for (int row = 0; row < 3; row++)
+    {
+        for (int column = 0; column < 3; column++)
+        {
+            if (field[column][row] == Player::None)
+            {
+                State next_state = *this; //Copy the state
+                Move move(column, row);
+                next_state.execute(move); //Execute the move on the copy
+
+                if(next_state.get_winner() == turn) 
+                {
+                    winning_moves.push_back(move); //We winn with the move
+                }
+                else if(!next_state.has_winning_move())
+                {
+                    good_moves.push_back(move); //The opponent cant win in their next move
+                }
+
+                possible_moves.push_back(move);
+            }
+        }
+    }
+    if (!winning_moves.empty()) //Check if we have a winning move
+    {
+        execute(winning_moves[rand() % winning_moves.size()]);
+    }
+    else if (!good_moves.empty()) //Check if we have a good move
+    {
+        execute(good_moves[rand() % good_moves.size()]);
+    }
+    else
+    {
+        execute(possible_moves[rand() % possible_moves.size()]);
+    }
+}
+```
+
+</details>
+<br>
+
+Nun sollte es um eineiges Schwieriger sein gegen den Computer zu gewinnen. Es ist aber immer noch moeglich. Immer dann wenn der menschliche Spieler zwei verschiedene gewinnende Zuege in seinen naechsten Zug hat, Spielt der Computer einen zufaelligen Zug und verliert. Das liegt daran dass der Computer nicht weiter als einene Zug in die Zukunft schauen kann. Und somit die erstellung von Zwickmuehlen nicht verhiendern kann. Dies werden wir in der folgenden Aufgabe aendern.
+
+### Aufgabe 4.3 Perfektes Spiel
+
