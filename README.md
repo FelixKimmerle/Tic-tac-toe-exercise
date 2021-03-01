@@ -706,7 +706,9 @@ Nun muessen wir auch wieder jeden legalen Zug auf einer Kopie des aktuellen Zust
 
 
 ```c++
-std::vector<Move> winning_moves;
+void State::generate_move()
+{
+    std::vector<Move> winning_moves;
     std::vector<Move> good_moves;
     std::vector<Move> possible_moves;
 
@@ -716,28 +718,28 @@ std::vector<Move> winning_moves;
         {
             if (field[column][row] == Player::None)
             {
-                State next_state = *this; //Copy the state
+                State next_state = *this;
                 Move move(column, row);
-                next_state.execute(move); //Execute the move on the copy
+                next_state.execute(move);
 
-                if(next_state.get_winner() == turn) 
+                if(next_state.get_winner() == turn)
                 {
-                    winning_moves.push_back(move); //We winn with the move
+                    winning_moves.push_back(move);
                 }
                 else if(!next_state.has_winning_move())
                 {
-                    good_moves.push_back(move); //The opponent cant win in their next move
+                    good_moves.push_back(move);
                 }
 
                 possible_moves.push_back(move);
             }
         }
     }
-    if (!winning_moves.empty()) //Check if we have a winning move
+    if (!winning_moves.empty())
     {
         execute(winning_moves[rand() % winning_moves.size()]);
     }
-    else if (!good_moves.empty()) //Check if we have a good move
+    else if (!good_moves.empty())
     {
         execute(good_moves[rand() % good_moves.size()]);
     }
@@ -755,3 +757,154 @@ Nun sollte es um eineiges Schwieriger sein gegen den Computer zu gewinnen. Es is
 
 ### Aufgabe 4.3 Perfektes Spiel
 
+In dieser Aufgabe werden wir den Minimax algorithmus implementieren. Schauen sie sich dazu dieses Video bis 5:15 (dannach wird alpha-beta pruning erklaert dies benoetigen wir hier noch nicht) an [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI).
+
+Wichtig: Wir benoetigen KEINE *static evaluation* da ein Tic-tac-toe Spiel maximal 9 Zuege lang ist und wir somit den Search Tree ganz durchrechnen koennen.
+
+Hinweis: In Tic-tac-toe gibt es nur 3 bewertungen: -1 fuer einen verlorenen Zustand, 0 fuer ein Unentschieden und 1 fuer einen gewonnen Zustand.
+
+Wir implementieren den Algorithmus in der Methode ```minimax```.
+Beginnen wir mit dem Rekursionsende. Also ein Zustand der entweden von einem Spieler gewonnen wurde oder unentschieden ist.
+
+Testen sie zuerste ob es einen Gewinner gibt. Wenn ja geben sie -1 zurueck. Wir muessen in diesem Fall nicht einmal testen wer gewonnen hat. Denn wenn z.b. Spieler Kreuz am Zug ist aber schon ein Gewinner feststeht, dann hat spieler Kreis im letzten Zug gewonnen. Und der Kreuz Spieler hat verloren.
+
+Wenn es noch keinen Gewinner gibt aber schon 9 Zuege gespielt wurden geben sie 0 zurueck da es sich um eine Unentschieden handelt.
+
+
+<details>
+  <summary>Lösung Rekursionsende</summary>
+
+
+```c++
+int State::minimax()
+{
+    if (winner != Player::None)
+    {
+        return -1;
+    }
+    else if (moves == 9)
+    {
+        return 0;
+    }
+    //...
+}
+```
+
+</details>
+<br>
+
+Nun implementieren wir den rekursiven Teil. Zuerst benoetigen wir eine Variable in der wir unseren Maximalen score speichern. Diese Variable koennen wir mit -1 initialisieren da wir definitv nichts schlechteres finden werden als -1. Nun muessen wir, wie schon in der Vorherigen Aufgabe, ueber alle legalen Zuege iterieren und diese auf einer Kopie ausprobieren. Aber nachdem wir den Zug ausprobiert haben rufen wir auf den neuen Zustand die minimax Methode auf. Den zurueckgegebenen Wert des minimax aufrufs negieren wir (also wir wechseln das Vorzeichen). Da ein guter naechster Zug von Gegner ja schlecht fuer uns ist und ein Schlechter naechster Zug vom Gegener gut fuer uns ist. Wenn der Gegner im naechsten Zug gewinnen kann gibt uns der minimax aufruf eine 1 zurueck. Wir negieren die 1 zu -1 (also ein Verloren). Dann schauen wir ob der Score dieses Zuges besser (groesser) als der bisherige maximale Score. Wenn dies der Fall ist updaten wir den maximalen Score. Am Ende der Methode geben wir den maximalen Score zurueck.
+
+<details>
+  <summary>Lösung minimax</summary>
+
+
+```c++
+int State::minimax()
+{
+    if (winner != Player::None)
+    {
+        return -1;
+    }
+    else if (moves == 9)
+    {
+        return 0;
+    }
+
+    int max_score = -1;
+
+    for (int row = 0; row < 3; row++)
+    {
+        for (int column = 0; column < 3; column++)
+        {
+            if (field[column][row] == Player::None)
+            {
+                //Copy the whole state.
+                State next_state = *this;
+                Move move(column, row);
+                //Execute the move.
+                next_state.execute(move);
+                //Call the minimax function on the new state.
+                int score_next_state = -next_state.minimax();
+
+                if (score_next_state > max_score)
+                {
+                    max_score = score_next_state;
+                }
+            }
+        }
+    }
+
+    return max_score;
+}
+```
+
+</details>
+<br>
+
+Nun muessen wir diese *bewertungs Funktion* in der ```generate_move``` Methode verwenden. 
+Wir werden diese Methode neu schreiben. Zuerst benoetigen wir einen Vektor der die Menge an besten Zuegen speichert. Wir machen das da es mehrere Zuege geben kann die die gleiche Bewertung haben (vor allem da wir ja nur drei verschiedene Bewertungen haben). Wenn wir dann einen zufaelligen Zug aus der Liste auswaehlen, spielt der Computer bei gleicher Eingabe nicht immer den gleichen Zug.
+Wir benoetigen zudem auch nochmal eine Variable um den maximalen Score zu speichern.
+Dann iterieren wir ueber alle legalen Zuege und fuehren diesen Zug auf einer Kopie des aktuellen Zustandes aus. Dann rufen wir die minimax Methode auf dem neuen Zustand auf und negieren auch wieder den Wert. Nun pruefen wir ob der neue Score groesser ist als der bisherige maximale Score. Wenn ja, dann leeren wir unseren Vektor an besten Zuegen da diese alle schlechter sind als unser aktueller Zug. Ausserdem updaten wir den bisherigen maximalen Score. Unabhaenig davon testen wir ob die neue Score gleich dem Maximalen ist. Wenn dies der Fall ist fuegen wir den neuen Zug zur liste bester Zuege hinzu.
+
+Wenn wir durch alle legalen Zuege iteriert sind muessen wir nur noch einen zufaeligen Zug aus dem Vektor ausfuerhen. Optional kann man den Zug auch mit ```move.print()``` auf der Konsole ausgeben.
+
+Hinweis: wir benoetigen die Methode ```has_winning_move``` nicht mehr. Sie koennen sie also entfernen.
+
+<details>
+  <summary>Lösung minimax</summary>
+
+
+```c++
+void State::generate_move()
+{
+    std::vector<Move> best_moves;
+    int best_score = -1;
+
+    for (int row = 0; row < 3; row++)
+    {
+        for (int column = 0; column < 3; column++)
+        {
+            if (field[column][row] == Player::None) //Check if the move is possible.
+            {
+                Move move(column, row);
+                State next_state = *this; //Copy the whole state
+                next_state.execute(move); //Execute the move
+                int score_next_state = -next_state.minimax();
+
+                if (score_next_state > best_score) //Check if we have a new best move.
+                {
+                    best_moves.clear(); //Clear the vector because all moves saved are worse than the new move.
+                    best_score = score_next_state;
+                }
+                if (score_next_state == best_score)
+                {
+                    best_moves.push_back(move); //Add the move to the vector of equaly good moves.
+                }
+            }
+        }
+    }
+    Move move = best_moves[rand() % best_moves.size()]; //Select a random move from the vector of the best moves.
+    std::cout << "Computer played: ";
+    move.print(); //Print the move so you can see what the Ai played.
+    std::cout << std::endl;
+    execute(move);
+}
+```
+
+</details>
+<br>
+
+Wenn sie alles richtig gemacht haben. Sollte es jetzt unmoeglich sein gegen den Computer zu gewinnen. Wenn sie keine Fehler machen koennen sie ein Unentschieden erreichen. Ansonnsten verlieren sie.
+
+## Interessante erweiterungen
+
+* Sie koennen in der main Funktion den Aufruf ```state.read_move();``` durch ```state.generate_move();``` ersetzen. Dann spielt der Computer gegen sich selbst. Ein solches Spiel wird immer als Unentschieden ausgehen.
+
+* Aendern sie die Zugreihenfolge so dass der Computer den ersten Zug hat also als Kreuz spielt. Und sie als Kreis spielen. (Achtung: Sie muessen die Konsolen ausgabe des Feldes auch anpassen sonnst sehen sie nicht was der Computer gespielt hat.)
+
+* Lassen sie die AI aus Aufgabe 4.2 gegen die AI aus Aufgabe 4.3 Spielen.
+
+* Wenn sie den die Methode ```generate_moves``` auf ein leeres Feld aufrufen. Berechnet die minimax Mehtode alle moeglichen Spielverlaufe. Sie koennen hier mitzaehlen wie viele verschiedene Spiele es gibt bei denen Kreuz oder Kreis gewinnt oder es ein unentschieden gibt.
+
+* Schauen sie das Video [Algorithms Explained – minimax and alpha-beta pruning](https://www.youtube.com/watch?v=l-hh51ncgDI) zu Ende und implementieren sie alpha-beta pruning. (Loesung dazu gibt es bald hier!)
